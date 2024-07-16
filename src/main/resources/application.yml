@@ -2,7 +2,14 @@ spring:
   application:
     name: us
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@${SERVICE_TYPE}?TNS_ADMIN=${WALLET_PATH}
+    url: jdbc:mariadb://${DATABASE_URL}/us
     username: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
