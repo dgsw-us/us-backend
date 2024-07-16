@@ -38,3 +38,9 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+### DS_Store ###
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
