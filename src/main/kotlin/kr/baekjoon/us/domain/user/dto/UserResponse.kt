@@ -1,4 +1,4 @@
-package kr.baekjoon.us.domain.user.dto.request
+package kr.baekjoon.us.domain.user.dto
 
 import java.util.*
 
@@ -8,5 +8,4 @@ data class UserResponse(
     val birthDate: Date,
     val userId: String,
     val email: String,
-    val password: String,
 )

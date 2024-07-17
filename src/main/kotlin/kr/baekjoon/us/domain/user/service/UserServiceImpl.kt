@@ -1,6 +1,7 @@
 package kr.baekjoon.us.domain.user.service
 
 import kr.baekjoon.us.domain.user.domain.User
+import kr.baekjoon.us.domain.user.dto.UserResponse
 import kr.baekjoon.us.domain.user.dto.request.*
 import kr.baekjoon.us.domain.user.repository.UserRepository
 import kr.baekjoon.us.global.auth.jwt.JwtUtils
@@ -11,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import java.security.Principal
-import kotlin.math.log
 
 @Service
 class UserServiceImpl (
@@ -61,7 +61,6 @@ class UserServiceImpl (
             birthDate = user.birthDate,
             userId = user.userId,
             email = user.email,
-            password = user.password
         )
     }
 

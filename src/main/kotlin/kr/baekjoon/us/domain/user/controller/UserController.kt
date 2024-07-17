@@ -1,5 +1,6 @@
 package kr.baekjoon.us.domain.user.controller
 
+import kr.baekjoon.us.domain.user.dto.UserResponse
 import kr.baekjoon.us.domain.user.dto.request.*
 import kr.baekjoon.us.domain.user.service.UserService
 import kr.baekjoon.us.global.auth.jwt.TokenInfo
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.security.Principal
@@ -21,6 +23,7 @@ class UserController (
 ) {
     @PostMapping("/login")
     fun login(
+        @RequestBody
         request: LoginRequest
     ): BaseResponse<TokenInfo> {
         return BaseResponse(
@@ -43,6 +46,7 @@ class UserController (
 
     @PostMapping
     fun register(
+        @RequestBody
         request: CreateUserRequest
     ): BaseResponse<Void> {
         userService.register(request)
@@ -65,6 +69,7 @@ class UserController (
 
     @PutMapping
     fun modifyUser(
+        @RequestBody
         request: ModifyUserRequest,
         principal: Principal
     ): BaseResponse<Void> {
@@ -77,6 +82,7 @@ class UserController (
 
     @PatchMapping("/password")
     fun modifyPassword(
+        @RequestBody
         request: ModifyPasswordRequest,
         principal: Principal
     ): BaseResponse<Void> {

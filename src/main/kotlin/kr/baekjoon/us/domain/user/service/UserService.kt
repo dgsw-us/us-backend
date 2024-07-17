@@ -1,5 +1,6 @@
 package kr.baekjoon.us.domain.user.service
 
+import kr.baekjoon.us.domain.user.dto.UserResponse
 import kr.baekjoon.us.domain.user.dto.request.*
 import kr.baekjoon.us.global.auth.jwt.TokenInfo
 import java.security.Principal
