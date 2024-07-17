@@ -39,6 +39,8 @@ class UserServiceImpl (
     }
 
     override fun register(request: CreateUserRequest) {
+        userRepository.findByUserId(request.userId)?.let { throw BusinessException(HttpStatus.CONFLICT, "유저가 중복임") }
+
         val user = User (
             username = request.username,
             birthDate = request.birthDate,

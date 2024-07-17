@@ -14,7 +14,7 @@ data class Schedule (
     val startTime: LocalDateTime,
     val endTime: LocalDateTime,
     val commonSchedule: Boolean,
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "user")
     val user: User
 )

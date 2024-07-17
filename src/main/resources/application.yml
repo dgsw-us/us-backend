@@ -16,5 +16,5 @@ spring:
 
 jwt:
   secret: 5b1fb9de79477be5c5c8f44f31953531c27686d42ea7cf1c1be2c406c473e91e
-  access: 6000000
-  refresh: 172800000
+  access: 60000000000
+  refresh: 1728000000000

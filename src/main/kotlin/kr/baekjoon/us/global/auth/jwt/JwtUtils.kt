@@ -38,7 +38,7 @@ class JwtUtils (
             .header()
             .add("typ", "JWT")
             .and()
-            .claim("token-typ", "refresh")
+            .claim("token-typ", "access")
             .subject(userDetails.username)
             .issuer("hun")
             .issuedAt(Date(now))

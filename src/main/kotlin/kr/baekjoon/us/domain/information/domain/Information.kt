@@ -13,7 +13,7 @@ data class Information(
     val title: String,
     val description: String,
     val category: InformationCategory,
-    @ManyToOne
+    @ManyToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     @JoinColumn(name = "writer")
     val writer: User
 ): BaseEntity()

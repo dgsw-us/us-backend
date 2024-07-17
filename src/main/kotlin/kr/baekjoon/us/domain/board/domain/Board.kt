@@ -13,9 +13,9 @@ data class Board(
     val title: String,
     val description: String,
     val category: BoardCategory,
-    @ManyToOne
+    @ManyToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     @JoinColumn(name = "writer")
     val writer: User,
-    @OneToMany(mappedBy = "board")
+    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     val comments: List<Comment>? = arrayListOf()
 ): BaseEntity()
