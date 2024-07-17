@@ -4,6 +4,7 @@ import kr.baekjoon.us.domain.information.domain.Information
 import kr.baekjoon.us.domain.information.dto.InformationResponse
 import kr.baekjoon.us.domain.information.dto.request.CreateInformationRequest
 import kr.baekjoon.us.domain.information.dto.request.UpdateInformationRequest
+import kr.baekjoon.us.domain.information.enums.InformationCategory
 import kr.baekjoon.us.domain.information.repository.InformationRepository
 import kr.baekjoon.us.domain.user.dto.UserResponse
 import kr.baekjoon.us.domain.user.repository.UserRepository
@@ -57,8 +58,13 @@ class InformationServiceImpl (
         )
     }
 
-    override fun getInfoList(): List<InformationResponse> {
-        val informationList = informationRepository.findAll()
+    override fun getInfoList(category: InformationCategory?): List<InformationResponse> {
+        val informationList = if (category == null) {
+            informationRepository.findAll()
+        } else {
+            informationRepository.findByCategory(category)
+        }
+
         return informationList.map { information ->
             val userResponse = UserResponse(
                 id = information.writer.id!!,

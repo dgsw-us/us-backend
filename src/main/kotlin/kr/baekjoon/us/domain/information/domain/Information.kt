@@ -14,6 +14,6 @@ data class Information(
     val description: String,
     val category: InformationCategory,
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "writer")
     val writer: User
 ): BaseEntity()

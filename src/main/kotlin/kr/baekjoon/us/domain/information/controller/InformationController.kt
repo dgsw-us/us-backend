@@ -3,6 +3,7 @@ package kr.baekjoon.us.domain.information.controller
 import kr.baekjoon.us.domain.information.dto.InformationResponse
 import kr.baekjoon.us.domain.information.dto.request.CreateInformationRequest
 import kr.baekjoon.us.domain.information.dto.request.UpdateInformationRequest
+import kr.baekjoon.us.domain.information.enums.InformationCategory
 import kr.baekjoon.us.domain.information.service.InformationService
 import kr.baekjoon.us.global.common.BaseResponse
 import org.springframework.http.HttpStatus
@@ -41,11 +42,12 @@ class InformationController (
 
     @GetMapping("/list")
     fun getInfoList(
+        @RequestParam category: InformationCategory
     ): BaseResponse<List<InformationResponse>> {
         return BaseResponse(
             code = HttpStatus.OK,
             message = "정보 리스트 조회 완료",
-            data = informationService.getInfoList()
+            data = informationService.getInfoList(category)
         )
     }
 
