@@ -162,6 +162,7 @@ class BoardServiceImpl (
             throw BusinessException(HttpStatus.FORBIDDEN, "권한이 없습니다")
         }
 
+        commentRepository.deleteAll(commentRepository.findByBoard(board))
         boardRepository.delete(board)
     }
 

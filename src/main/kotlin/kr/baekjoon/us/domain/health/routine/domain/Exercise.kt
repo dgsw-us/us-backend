@@ -9,10 +9,10 @@ data class Exercise(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val name: String,
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @ManyToOne
     @JoinColumn(name = "writer")
     val writer: User,
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @ManyToOne
     @JoinColumn(name = "routine")
     val routine: Routine,
 )

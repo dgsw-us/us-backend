@@ -7,14 +7,14 @@ import kr.baekjoon.us.domain.user.domain.User
 data class Routine (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val routineId: Long? = null,
     val name: String,
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "writer")
     val writer: User,
-    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.EAGER)
     var doUser: List<Do> = arrayListOf(),
-    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.EAGER)
     val exerciseList: List<Exercise> = arrayListOf()
 )

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
 import javax.crypto.spec.SecretKeySpec
+import kotlin.jvm.Throws
 
 @Component
 class JwtUtils (
@@ -65,13 +66,19 @@ class JwtUtils (
         )
     }
 
+    @Throws
     fun getAuthentication(token: String): Authentication {
-        val userId = verifyToken(token).payload.subject
-        val userDetails = userDetailsService.loadUserByUsername(userId)
+        try {
+            val userId = verifyToken(token).payload.subject
+            val userDetails = userDetailsService.loadUserByUsername(userId)
 
-        return UsernamePasswordAuthenticationToken(userDetails, null, null)
+            return UsernamePasswordAuthenticationToken(userDetails, null, null)
+        } catch (e: BusinessException) {
+            throw e
+        }
     }
 
+    @Throws
     fun verifyToken(token: String): Jws<Claims> {
         try {
             return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token.removePrefix("Bearer "))

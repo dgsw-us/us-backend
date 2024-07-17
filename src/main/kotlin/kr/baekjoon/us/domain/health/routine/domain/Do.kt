@@ -7,11 +7,11 @@ import kr.baekjoon.us.domain.user.domain.User
 data class Do (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val doId: Long? = null,
     @ManyToOne
     @JoinColumn(name = "user")
     val user: User,
     @ManyToOne
-    @JoinColumn(name = "routine")
+    @JoinColumn(name = "routine_id")
     val routine: Routine
 )

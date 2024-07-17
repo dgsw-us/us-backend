@@ -1,5 +1,6 @@
 package kr.baekjoon.us.domain.health.routine.service
 
+import jakarta.transaction.Transactional
 import kr.baekjoon.us.domain.health.routine.domain.Do
 import kr.baekjoon.us.domain.health.routine.domain.Routine
 import kr.baekjoon.us.domain.health.routine.dto.*
@@ -8,12 +9,14 @@ import kr.baekjoon.us.domain.health.routine.repository.ExerciseRepository
 import kr.baekjoon.us.domain.health.routine.repository.RoutineRepository
 import kr.baekjoon.us.domain.user.repository.UserRepository
 import kr.baekjoon.us.global.exception.BusinessException
+import org.hibernate.Hibernate
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import java.security.Principal
 
 @Service
+@Transactional
 class RoutineServiceImpl(
     private val userRepository: UserRepository,
     private val exerciseRepository: ExerciseRepository,
@@ -57,7 +60,7 @@ class RoutineServiceImpl(
 
         return doList.map {
             RoutineResponse(
-                id = it.routine.id!!,
+                id = it.routine.routineId!!,
                 name = it.routine.name,
                 exerciseList = it.routine.exerciseList.map { exercise ->
                     ExerciseResponse(
@@ -74,7 +77,7 @@ class RoutineServiceImpl(
             .findAll()
             .map {
                 RoutineResponse(
-                    id = it.id!!,
+                    id = it.routineId!!,
                     name = it.name,
                     exerciseList = it.exerciseList.map { exercise ->
                         ExerciseResponse(
@@ -117,6 +120,8 @@ class RoutineServiceImpl(
             throw BusinessException(HttpStatus.FORBIDDEN, "권한이 없음.")
         }
 
+        doRepository.deleteAll(doRepository.findByRoutine(routine))
+        exerciseRepository.deleteAll(exerciseRepository.findByRoutine(routine))
         routineRepository.delete(routine)
     }
 
