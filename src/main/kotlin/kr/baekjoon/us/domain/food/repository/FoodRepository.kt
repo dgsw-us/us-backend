@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
 interface FoodRepository: JpaRepository<Food, Long> {
-    @Query("SELECT fd FROM Food fd ORDER BY RANDOM() LIMIT 4")
+    @Query("SELECT * FROM food ORDER BY RAND() LIMIT 4", nativeQuery = true)
     fun findByRandom(): List<Food>
 }
