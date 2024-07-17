@@ -24,7 +24,7 @@ class UserServiceImpl (
         val user = userRepository.findByUserId(loginRequest.userId)
             ?: throw BusinessException(HttpStatus.NOT_FOUND, "유저를 찾을 수 없음")
         if (bCryptPasswordEncoder.matches(loginRequest.password, user.password)) {
-            val userDetails = userDetailsService.loadUserByUsername(user.username)
+            val userDetails = userDetailsService.loadUserByUsername(user.userId)
             return jwtUtils.generateToken(userDetails)
         } else {
             throw BusinessException(HttpStatus.BAD_REQUEST, "비밀번호가 틀렸음")
