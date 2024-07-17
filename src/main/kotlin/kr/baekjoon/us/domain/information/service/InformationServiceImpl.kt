@@ -26,7 +26,8 @@ class InformationServiceImpl (
         val information = Information (
             title = request.title,
             description = request.description,
-            writer = user
+            writer = user,
+            category = request.category
         )
 
         informationRepository.save(information)
@@ -51,7 +52,8 @@ class InformationServiceImpl (
             description = information.description,
             writer = userResponse,
             regDate = information.regDate!!,
-            modDate = information.modDate!!
+            modDate = information.modDate!!,
+            category = information.category
         )
     }
 
@@ -72,7 +74,8 @@ class InformationServiceImpl (
                 description = information.description,
                 writer = userResponse,
                 regDate = information.regDate!!,
-                modDate = information.modDate!!
+                modDate = information.modDate!!,
+                category = information.category
             )
         }
     }

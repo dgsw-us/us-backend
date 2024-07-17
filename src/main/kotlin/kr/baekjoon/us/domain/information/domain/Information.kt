@@ -1,6 +1,7 @@
 package kr.baekjoon.us.domain.information.domain
 
 import jakarta.persistence.*
+import kr.baekjoon.us.domain.information.enums.InformationCategory
 import kr.baekjoon.us.domain.user.domain.User
 import kr.baekjoon.us.global.common.BaseEntity
 
@@ -11,6 +12,7 @@ data class Information(
     val informationId: Long? = null,
     val title: String,
     val description: String,
+    val category: InformationCategory,
     @ManyToOne
     @JoinColumn(name = "id")
     val writer: User
