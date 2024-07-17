@@ -13,8 +13,11 @@ class UserDetailsServiceImpl (
     private val userRepository: UserRepository
 ): UserDetailsService {
     override fun loadUserByUsername(username: String?): UserDetails {
+        println("Loading user by username: $username")
         val user = userRepository.findByUserId(username!!)
             ?:throw BusinessException(HttpStatus.NOT_FOUND, "유저를 찾을 수 없음")
+
+        println(user)
 
         return UserDetailsImpl(user)
     }

@@ -84,7 +84,7 @@ class UserServiceImpl (
 
         if (bCryptPasswordEncoder.matches(request.beforePassword, user.password)) {
             userRepository.save(user.copy(
-                password = request.afterPassword
+                password = bCryptPasswordEncoder.encode(request.afterPassword)
             ))
         }
     }

@@ -15,7 +15,7 @@ class UserDetailsImpl (
     }
 
     override fun getUsername(): String {
-        return user.username
+        return user.userId
     }
 
 }
