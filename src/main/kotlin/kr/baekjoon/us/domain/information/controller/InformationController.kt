@@ -42,7 +42,7 @@ class InformationController (
 
     @GetMapping("/list")
     fun getInfoList(
-        @RequestParam category: InformationCategory
+        @RequestParam(required = false) category: InformationCategory?
     ): BaseResponse<List<InformationResponse>> {
         return BaseResponse(
             code = HttpStatus.OK,
