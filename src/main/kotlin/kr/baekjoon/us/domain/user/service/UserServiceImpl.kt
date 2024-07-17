@@ -34,7 +34,7 @@ class UserServiceImpl (
     override fun refresh(principal: Principal): TokenInfo {
         val user = userRepository.findByUserId(principal.name)
             ?: throw BusinessException(HttpStatus.NOT_FOUND, "유저를 찾을 수 없음")
-        val userDetails = userDetailsService.loadUserByUsername(user.username)
+        val userDetails = userDetailsService.loadUserByUsername(user.userId)
         return jwtUtils.generateToken(userDetails)
     }
 
