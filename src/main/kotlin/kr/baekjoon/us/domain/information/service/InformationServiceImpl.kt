@@ -49,7 +49,9 @@ class InformationServiceImpl (
             informationId = information.informationId!!,
             title = information.title,
             description = information.description,
-            writer = userResponse
+            writer = userResponse,
+            regDate = information.regDate!!,
+            modDate = information.modDate!!
         )
     }
 
@@ -68,7 +70,9 @@ class InformationServiceImpl (
                 informationId = information.informationId!!,
                 title = information.title,
                 description = information.description,
-                writer = userResponse
+                writer = userResponse,
+                regDate = information.regDate!!,
+                modDate = information.modDate!!
             )
         }
     }
