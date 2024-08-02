@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Environment check
-        run: env
+        run: env | grep DATABASE_URL | grep DATABASE_USERNAME | grep DATABASE_PASSWORD | grep DOCKERHUB_USERNAME | grep DOCKERHUB_PASSWORD
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
