@@ -23,11 +23,11 @@ jobs:
       - name: Build with Gradle
         run: |
           chmod +x gradlew
-          DATABASE_URL=${{ secrets.DATABASE_URL }} DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} ./gradlew build
+          ./gradlew build
 
       - name: Docker image build
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/us-backend
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/us-backend .
 
       - name: Dockerhub login
         uses: docker/login-action@v2
