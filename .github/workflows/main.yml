@@ -14,9 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Environment check
-        run: env | grep DATABASE_URL | grep DATABASE_USERNAME | grep DATABASE_PASSWORD | grep DOCKERHUB_USERNAME | grep DOCKERHUB_PASSWORD
-
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -26,7 +23,7 @@ jobs:
       - name: Build with Gradle
         run: |
           chmod +x gradlew
-          ./gradlew build
+          DATABASE_URL=${{ secrets.DATABASE_URL }} DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} ./gradlew build
 
       - name: Docker image build
         run: |
