@@ -6,6 +6,11 @@ jobs:
   build-docker-image:
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DATABASE_USER: ${{ secrets.DATABASE_USERNAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+
     steps:
       - uses: actions/checkout@v3
 
@@ -19,10 +24,6 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew build
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DATABASE_USER: ${{ secrets.DATABASE_USERNAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
 
       - name: Docker image build
         run: |
