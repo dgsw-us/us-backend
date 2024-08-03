@@ -19,4 +19,4 @@ jwt:
   access: 60000000000
   refresh: 1728000000000
 server:
-  port: 7070
+  port: 7071
