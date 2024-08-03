@@ -27,6 +27,7 @@ jobs:
 
       - name: Docker image build
         run: |
+          docker buildx create --use
           docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/us-backend:latest .
 
       - name: Dockerhub login
