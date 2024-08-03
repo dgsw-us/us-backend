@@ -2,9 +2,9 @@ spring:
   application:
     name: us
   datasource:
-    url: jdbc:mariadb://${DATABASE_URL}/us
-    username: ${DATABASE_USER}
-    password: ${DATABASE_PASSWORD}
+    url: jdbc:mariadb://localhost:8306/us
+    username: hun
+    password: password
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     properties:
