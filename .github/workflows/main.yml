@@ -41,7 +41,3 @@ jobs:
           push: true
           tags: gwon11225/us-backend:latest
           platforms: linux/amd64,linux/arm64
-
-      - name: Docker image push
-        run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/us-backend
