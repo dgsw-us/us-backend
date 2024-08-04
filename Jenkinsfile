@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+        stage ('Checkout') {
+            git branch: 'main',
+                credentialsId: 'gwongithub',
+                url: 'https://github.com/dgsw-us/us-backend.git'
+        }
+
         stage ('Docker Image Pull') {
             steps {
                 script {
