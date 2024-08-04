@@ -14,7 +14,7 @@ pipeline {
                                 transfers: [
                                     sshTransfer (
                                         execCommand: """
-                                        echo Unkwonpassword1! | docker login -u gwon11225 --password-stdin
+                                        echo password | docker login -u gwon11225 --password-stdin
                                         docker pull gwon11225/us-backend:latest
                                         """
                                     )
